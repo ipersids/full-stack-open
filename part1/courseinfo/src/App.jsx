@@ -1,26 +1,5 @@
-// const App = () => {
-//   console.log("Yo, dev, do you open your console? :)")
-//   const course = 'Half Stack application development'
-//   const part1 = 'Fundamentals of React'
-//   const exercises1 = 10
-//   const part2 = 'Using props to pass data'
-//   const exercises2 = 7
-//   const part3 = 'State of a component'
-//   const exercises3 = 14
-
-//   return (
-//     <div>
-//       <h1>{course}</h1>
-//       <p>{part1} {exercises1}</p>
-//       <p>{part2} {exercises2}</p>
-//       <p>{part3} {exercises3}</p>
-//       <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
-//     </div>
-//   )
-// }
-
 const Header = (props) => {
-  console.log("Add Header") 
+  // console.log("Add Header") 
 
   return (
     <div>
@@ -29,18 +8,30 @@ const Header = (props) => {
   )
 }
 
-const Content = (props) => {
-  console.log("Add content: " + props.part + ' ' + props.exercises)
+const Part = (props) => {
+  // console.log("Create Part: " + props.part + ' ' + props.ex)
 
   return (
     <div>
-      <p>{props.part} {props.exercises}</p>
+      <p>{props.part} {props.ex}</p>
+    </div>
+  )
+}
+
+const Content = (props) => {
+  // console.log("Add content")
+
+  return (
+    <div>
+      {props.parts.map(item => (
+        <Part key={item.id} part={item.part} ex={item.ex} />
+      ))}
     </div>
   )
 }
 
 const Total = (props) => {
-  console.log("Add total amount of exercises: " + props.sum)
+  // console.log("Add total amount of exercises: " + props.sum)
 
     return (
       <div>
@@ -53,20 +44,17 @@ const App = () => {
   console.log("Yo, dev, do you open your console? :)")
 
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
-  const sum = exercises1 + exercises2 + exercises3
+  const parts = [
+    {id:0, part:'Fundamentals of React', ex:10},
+    {id:1, part:'Using props to pass data', ex:7},
+    {id:2, part:'State of a component', ex:14}
+  ]
+  const sum = parts[0].ex + parts[1].ex + parts[2].ex
 
   return (
     <div>
       <Header course={course} />
-      <Content part={part1} exercises={exercises1} />
-      <Content part={part2} exercises={exercises2} />
-      <Content part={part3} exercises={exercises3} />
+      <Content parts={parts} />
       <Total sum={sum}/>
     </div>
   )
