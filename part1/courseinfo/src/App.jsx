@@ -9,7 +9,7 @@ const Header = (props) => {
 }
 
 const Part = (props) => {
-  // console.log("Create Part: " + props.name + ' ' + props.exercises)
+  console.log("Create Part: " + props.name + ' ' + props.exercises)
 
   return (
     <div>
@@ -19,19 +19,19 @@ const Part = (props) => {
 }
 
 const Content = (props) => {
-  // console.log("Add content." )
+  console.log("Add content." )
 
   return (
     <div>
-      <Part part={props.part1} />
-      <Part part={props.part2} />
-      <Part part={props.part3} />
+      <Part name={props.parts[0].name} exercises={props.parts[0].exercises} />
+      <Part name={props.parts[1].name} exercises={props.parts[1].exercises} />
+      <Part name={props.parts[2].name} exercises={props.parts[2].exercises} />
     </div>
   )
 }
 
 const Total = (props) => {
-  // console.log("Add total amount of exercises: " + props.sum)
+  console.log("Add total amount of exercises: " + props.sum)
 
     return (
       <div>
