@@ -1,5 +1,5 @@
 const Header = (props) => {
-  // console.log("Add Header") 
+  // console.log("Add Header: " + props.course) 
 
   return (
     <div>
@@ -9,23 +9,23 @@ const Header = (props) => {
 }
 
 const Part = (props) => {
-  // console.log("Create Part: " + props.part + ' ' + props.ex)
+  // console.log("Create Part: " + props.part.name + ' ' + props.part.exercises)
 
   return (
     <div>
-      <p>{props.part} {props.ex}</p>
+      <p>{props.part.name} {props.part.exercises}</p>
     </div>
   )
 }
 
 const Content = (props) => {
-  // console.log("Add content")
+  // console.log("Add content." )
 
   return (
     <div>
-      {props.parts.map(item => (
-        <Part key={item.id} part={item.part} ex={item.ex} />
-      ))}
+      <Part part={props.part1} />
+      <Part part={props.part2} />
+      <Part part={props.part3} />
     </div>
   )
 }
@@ -40,22 +40,29 @@ const Total = (props) => {
     )
 }
 
+const sum = (ex1, ex2, ex3) => ex1 + ex2 + ex3
+
 const App = () => {
   console.log("Yo, dev, do you open your console? :)")
-
   const course = 'Half Stack application development'
-  const parts = [
-    {id:0, part:'Fundamentals of React', ex:10},
-    {id:1, part:'Using props to pass data', ex:7},
-    {id:2, part:'State of a component', ex:14}
-  ]
-  const sum = parts[0].ex + parts[1].ex + parts[2].ex
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
 
   return (
     <div>
       <Header course={course} />
-      <Content parts={parts} />
-      <Total sum={sum}/>
+      <Content part1={part1} part2={part2} part3={part3}/>
+      <Total sum={sum(part1.exercises, part2.exercises, part3.exercises)} />
     </div>
   )
 }
