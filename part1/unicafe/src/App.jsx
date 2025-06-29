@@ -8,19 +8,35 @@ const Header = (props) => {
   )
 }
 
+const StatisticLine = (props) => {
+	return (
+		<tr>
+			<td>{props.text}</td>
+			<td>{props.value}</td>
+		</tr>
+	)
+}
+
 const Statistics = (props) => {
   // console.log("Counter:", {good, neutral, bad})
   const all = props.good + props.neutral + props.bad
+  if (all == 0) {
+	return (<div> No feedback given </div>)
+  }
   const average = (props.good - props.bad) / all
   const positive = props.good / all * 100
   return (
     <div>
-      <p> good {props.good} </p>
-      <p> neutral {props.neutral} </p>
-      <p> bad {props.bad} </p>
-	  <p> all {all} </p>
-	  <p> average {average} </p>
-	  <p> positive {positive}% </p>
+		<table>
+			<tbody>
+				<StatisticLine text="good" value={props.good} />
+      			<StatisticLine text="neutral" value={props.neutral} />
+      			<StatisticLine text="bad" value={props.bad} />
+	  			<StatisticLine text="all" value={all} />
+	  			<StatisticLine text="average" value={average} />
+	  			<StatisticLine text="positive" value={positive + '%'} />
+			</tbody>
+		</table>
     </div>
   )
 }
