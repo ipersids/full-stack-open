@@ -8,16 +8,16 @@ const Header = (props) => {
   )
 }
 
-const FeedbackRes = ({good, neutral, bad}) => {
+const Statistics = (props) => {
   // console.log("Counter:", {good, neutral, bad})
-  const all = good + neutral + bad
-  const average = (good - bad) / all
-  const positive = good / all * 100
+  const all = props.good + props.neutral + props.bad
+  const average = (props.good - props.bad) / all
+  const positive = props.good / all * 100
   return (
     <div>
-      <p> good {good} </p>
-      <p> neutral {neutral} </p>
-      <p> bad {bad} </p>
+      <p> good {props.good} </p>
+      <p> neutral {props.neutral} </p>
+      <p> bad {props.bad} </p>
 	  <p> all {all} </p>
 	  <p> average {average} </p>
 	  <p> positive {positive}% </p>
@@ -43,7 +43,7 @@ const App = () => {
       <Button onClick={handleNeutralClick} text="neutral" />
       <Button onClick={handleBadClick} text="bad" />
       <Header title="statistics" />
-      <FeedbackRes good={good} neutral={neutral} bad={bad}/>
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   )
 }
